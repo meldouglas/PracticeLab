@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="">
+<head>
+    <title>Edit Customer</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="col-md-6 offset-3">
+        <h1>Edit Customer</h1>
+        <form method="post" th:action="@{/customers/edit}" th:object="${customer}">
+            <div class="mb-3">
+                <label for="customerNumber" class="form-label">Customer Number</label>
+                <input class="form-control" type="number" id="customerNumber" th:field="*{customerNumber}" required>
+                <span th:errors="${customer.customerNumber}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Customer Name</label>
+                <input class="form-control" type="text" id="name" th:field="*{name}" required>
+                <span th:errors="${customer.name}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="deposit" class="form-label">Customer Initial Deposit</label>
+                <input class="form-control" type="number" id="deposit" th:field="*{deposit}" required>
+                <span th:errors="${customer.deposit}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="years" class="form-label">Number of years</label>
+                <input class="form-control" type="number" id="years" th:field="*{years}" required>
+                <span th:errors="${customer.years}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="savingsType" class="form-label">Savings Type</label>
+                <select class="form-select" id="savingsType" th:field="*{savingsType}">
+                    <option th:each="type : ${savingsTypes}" th:value="${type}" th:text="${type}">Savings Type</option>
+                </select>
+                <span th:errors="${customer.savingsType}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="/customers" class="btn btn-secondary">Back</a>
+    </div>
+</section>
+<script src="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
